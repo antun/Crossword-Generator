@@ -3,51 +3,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Crossword</title>
-<style type="text/css">
-#crossword {
-    text-align:center;
-}
-
-.crossword {
-    border-collapse:collapse;
-    font-family:"Courier New", Courier, monospace;
-    margin-left:auto;
-    margin-right:auto;
-    clear:both;
-    margin-top:10px;
-    margin-bottom:10px;
-}
-
-.crossword td {
-    border:1px solid black;
-    padding:0;
-    margin:0;
-    vertical-align:middle;
-    padding:0;
-    text-align:center;
-    width:30px;
-    height:30px;
-}
-
-.crossword .no-border {
-    border:none;
-}
-
-#clues {
-    margin:auto;
-}
-
-#clues td {
-    vertical-align:top;
-}
-</style>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="styles.css">
 <script type="text/javascript" src="crossword.js"></script>
 
 <script type="text/javascript">
-window.onload = function(){
-    // words[i] correlates to clues[i]
-    var words = ["dog", "cat", "bat", "elephant", "kangaroo"];
-    var clues = ["Man's best friend", "Likes to chase mice", "Flying mammal", "Has a trunk", "Large marsupial"];
+$(function() {
+    $('#generateButton').on('click', function(){
+        updateCrossword();
+    });
+});
+
+function getInputContentsAsArray(selector) {
+    var rawLines = $(selector).text().replace(/<div>/g,'\n').replace(/<\/div>/g,'').replace(/<br>/g,'\n');
+    var rawArr = rawLines.split('\n');
+    var filteredLines = rawArr.filter(function(el) {return  ($.trim( el ) !== '' )});
+    var trimmedLines = filteredLines.map(function(el) {return $.trim(el)});
+    return trimmedLines;
+}
+
+function updateCrossword() {
+    var words = getInputContentsAsArray('#answersInput');
+    var clues = getInputContentsAsArray('#cluesInput');
 
     // Create crossword object with the words and clues
     var cw = new Crossword(words, clues);
@@ -68,13 +45,14 @@ window.onload = function(){
     }
 
     // turn the crossword grid into HTML
-    var show_answers = true;
+    var show_answers = $('#showAnswersCheckbox').prop('checked');
+    console.log('show_answers', show_answers);
     document.getElementById("crossword").innerHTML = CrosswordUtils.toHtml(grid, show_answers);
 
     // make a nice legend for the clues
     var legend = cw.getLegend(grid);
     addLegendToPage(legend);
-};
+}
 
 function addLegendToPage(groups){
     for(var k in groups){
@@ -90,6 +68,111 @@ function addLegendToPage(groups){
 </head>
 
 <body> 
+    <div class="words">
+        <div contenteditable="true" id="answersInput">
+            好吃好吃
+            <div>
+                好像你生病了
+            </div>
+            <div>
+                好多老外
+            </div>
+            <div>
+                她们学英语
+            </div>
+            <div>
+                你的老师怎么样
+            </div>
+            <div>
+                去年在中国
+            </div>
+            <div>
+                她怎么在去机场
+            </div>
+            <div>
+                语言
+            </div>
+            <div>
+                我的手机
+            </div>
+            <div>
+                我喜欢鸡蛋
+            </div>
+            <div>
+                德国欢迎您
+            </div>
+            <div>
+                您好
+            </div>
+            <div>
+                个傻蛋
+            </div>
+            <div>
+                好久不见
+            </div>
+            <div>
+                没关系
+            </div>
+            <div>
+                没有见她
+            </div>
+        </div>
+        <div id="cluesInput">
+            Yummy! Yummy!
+            <div>
+                Seems like you are sick
+            </div>
+            <div>
+                So many foreigners
+            </div>
+            <div>
+                They study English
+            </div>
+            <div>
+                What's your teacher like?
+            </div>
+            <div>
+                Last year in China
+            </div>
+            <div>
+                Why is she going to the airport?
+            </div>
+            <div>
+                Language, Dialect
+            </div>
+            <div>
+                My phone
+            </div>
+            <div>
+                I like eggs
+            </div>
+            <div>
+                Germany welcomes you
+            </div>
+            <div>
+                Hello (polite)
+            </div>
+            <div>
+                Idiot
+            </div>
+            <div>
+                Long time no see
+            </div>
+            <div>
+                Never mind, doesn't matter
+            </div>
+            <div>
+                Haven't seen her
+            </div>
+        </div>
+    </div>
+    </div>
+    <div>
+        <label><input type="checkbox" id="showAnswersCheckbox" value="yes" checked />Show Answers</label>
+
+        <button id="generateButton">Create Crossword</button>
+    </div>
+
     <div id="crossword"></div>
     <table id="clues">
         <thead>

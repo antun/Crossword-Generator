@@ -1,0 +1,53 @@
+#crossword {
+    text-align:center;
+}
+
+.crossword {
+    border-collapse:collapse;
+    font-family:"Courier New", Courier, monospace;
+    margin-left:auto;
+    margin-right:auto;
+    clear:both;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.crossword td {
+    border:1px solid black;
+    padding:0;
+    margin:0;
+    vertical-align:middle;
+    padding:0;
+    text-align:center;
+    width:30px;
+    height:30px;
+}
+
+.crossword .no-border {
+    border:none;
+}
+
+#clues {
+    margin:auto;
+}
+
+#clues td {
+    vertical-align:top;
+}
+
+#answersInput, #cluesInput {
+    width: 30%;
+    line-height: 30px;
+    font-size: 24px;
+}
+
+#answersInput {
+}
+
+#cluesInput {
+}
+
+.words {
+    display: flex;
+    margin: 20px;
+}
