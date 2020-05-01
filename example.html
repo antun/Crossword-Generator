@@ -14,6 +14,7 @@ $(function() {
     $('#generateButton').on('click', function(){
         updateCrossword();
     });
+    updateCrossword();
 });
 
 function getInputContentsAsArray(selector) {
@@ -71,12 +72,33 @@ function addLegendToPage(groups){
 
 <body> 
     <div class="container">
+
+        <div id="crossword"></div>
+
+        <table id="clues">
+            <thead>
+                <tr>
+                    <th>Across</th>
+                    <th>Down</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><ul id="across"></ul></td>
+                    <td><ul id="down"></ul></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr />
+
         <div class="headings">
             <div class="wordHeading">Chinese</div>
             <div class="cluesHeading">Clues</div>
         </div>
+
         <div class="words">
-            <div contenteditable="true" id="answersInput">
+            <div contenteditable="true" id="answersInput" class="border border-primary rounded">
                 好吃好吃
                 <div>
                     好像你生病了
@@ -124,7 +146,7 @@ function addLegendToPage(groups){
                     没有见她
                 </div>
             </div>
-            <div contenteditable="true" id="cluesInput">
+            <div contenteditable="true" id="cluesInput" class="border border-secondary rounded">
                 Yummy! Yummy!
                 <div>
                     Seems like you are sick
@@ -172,31 +194,20 @@ function addLegendToPage(groups){
                     Haven't seen her
                 </div>
             </div>
+            <div class="card instructions">
+                <h5 class="card-title">Instructions</h5>
+                <div class="card-contents">
+                    <p>
+                    Enter Chinese text in the left-hand box - one per line. Enter clues (in any language) in the right hand box, again one per line. Click the Create Crossword button when ready.
+                    </p>
+                    <label class="checkboxLabel"><input type="checkbox" id="showAnswersCheckbox" value="yes" checked />Show Answers</label>
+
+                    <button class="btn btn-primary" id="generateButton">Create Crossword</button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="card">
-        <h5 class="card-title">Options</h5>
 
-        <label><input type="checkbox" id="showAnswersCheckbox" value="yes" checked />Show Answers</label>
-
-        <button class="btn btn-primary" id="generateButton">Create Crossword</button>
-    </div>
-
-    <div id="crossword"></div>
-    <table id="clues">
-        <thead>
-            <tr>
-                <th>Across</th>
-                <th>Down</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><ul id="across"></ul></td>
-                <td><ul id="down"></ul></td>
-            </tr>
-        </tbody>
-    </table>
 
     </div>
 </body>

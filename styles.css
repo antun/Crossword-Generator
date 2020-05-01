@@ -35,25 +35,36 @@
     vertical-align:top;
 }
 
-#answersInput, #cluesInput, .wordHeading, .cluesHeading {
-    width: 30%;
-    line-height: 30px;
-    font-size: 24px;
+#answersInput, #cluesInput {
     overflow-x: scroll;
     white-space: nowrap;
+}
+
+#answersInput, #cluesInput, .wordHeading, .cluesHeading {
+    width: 25%;
+    margin: 5px;
+    line-height: 30px;
+    font-size: 24px;
+}
+
+#cluesInput {
+    font-size: 18px;
 }
 
 .wordHeading, .cluesHeading {
     font-weight: bold;
 }
 
-#answersInput {
-}
-
-#cluesInput {
-}
-
 .words, .headings {
     display: flex;
-    margin: 20px;
+    margin: 0px 20px;
+}
+
+.checkboxLabel {
+    font-size: 19px;
+    margin: auto;
+}
+
+.instructions {
+    width: 25%;
 }
